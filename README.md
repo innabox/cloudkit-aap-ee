@@ -1,8 +1,14 @@
-# public_template
+# Cloudkit execution environment
 
-Use this repository as the template for public-facing repositories. Please keep the following warning at the top of the repository README:
+Tools and configuration to run playbooks that interact with both OpenStack/ESI and OpenShift.
 
-> [!WARNING]
-> Be mindful of the content you commit to this repository. Do not commit any
-> material containing Red Hat confidential content, including information about
-> future product development plans.
+## Building the execution environment
+
+1. Download the `openshift-clients` package from [the customer portal] and place it in
+    `openshift-clients.rpm`
+
+2. Run:
+
+    ```
+    ansible-builder build --tag cloudkit-aap-ee
+    ```

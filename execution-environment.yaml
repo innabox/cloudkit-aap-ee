@@ -1,0 +1,27 @@
+version: 3
+ 
+images:
+  base_image:
+    name: registry.redhat.io/ansible-automation-platform/ee-minimal-rhel9:2.18
+ 
+dependencies:
+  galaxy: requirements.yaml
+  python: requirements.txt
+  ansible_core:
+    package_pip: ansible-core
+  ansible_runner:
+    package_pip: ansible-runner
+
+options:
+  package_manager_path: /usr/bin/microdnf
+
+additional_build_files:
+  - src: openshift-clients.rpm
+    dest: rpms
+
+additional_build_steps:
+  prepend_base:
+    - RUN $PKGMGR -y install bash-completion python3-netifaces
+    - COPY _build/rpms/*.rpm /tmp/
+    - RUN rpm -ivh /tmp/openshift-clients.rpm
+

@@ -1,0 +1,5 @@
+python-openstackclient
+python-ironicclient
+python-esiclient
+python-esileapclient
+kubernetes
